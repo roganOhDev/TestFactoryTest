@@ -1,6 +1,6 @@
 package com.main.testfactory.domain;
 
-//import org.assertj.core.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,6 +14,6 @@ public class TestService {
     }
 
     public void test(){
-//        Assertions.assertThat("abc").isEqualTo("abc");
+        Assertions.assertThat("abc").isEqualTo("abc");
     }
 }

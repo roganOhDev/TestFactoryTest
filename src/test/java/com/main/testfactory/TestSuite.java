@@ -33,7 +33,7 @@ public class TestSuite {
     public List<DynamicNode> test1() {
         return TestCase.flow(
                 TestCase.test("testa", () -> System.out.println("Testing1")),
-                TestCase.test("testb", this::rogan),
+                TestCase.test("testb", service::test),
                 TestCase.test("testbc", () -> System.out.println("Testing3")));
     }
 
@@ -43,10 +43,6 @@ public class TestSuite {
                 TestCase.test("test", () -> System.out.println("testing2")),
                 TestCase.test("test", () -> System.out.println("testing2")),
                 TestCase.test("test", () -> System.out.println("testing3")));
-    }
-
-    public void rogan(){
-        Assertions.assertThat("abc").isEqualTo("abc");
     }
 
 }
