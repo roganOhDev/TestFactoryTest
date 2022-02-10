@@ -2,15 +2,12 @@ package com.main.testfactory;
 
 
 import com.main.testfactory.domain.TestService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -34,7 +31,7 @@ public class TestSuite {
     public List<DynamicNode> test1() {
         return TestCase.flow(
                 TestCase.test("testa", () -> System.out.println("Testing1")),
-                TestCase.test("testb", () -> System.out.println("Testing2")),
+                TestCase.test("testb", service::test),
                 TestCase.test("testbc", () -> System.out.println("Testing3")));
     }
 
