@@ -1,19 +1,23 @@
 package com.main.testfactory;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DynamicNode;
-import org.junit.jupiter.api.TestFactory;
+
+import com.main.testfactory.domain.TestService;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TestSuite {
+
+    @Autowired
+    private TestService service;
 
     @BeforeEach
     public void beforeEach() {
@@ -23,13 +27,23 @@ public class TestSuite {
     @AfterEach
     public void afterEach() {
         System.out.println("Fin");
+        System.out.println("");
     }
 
     @TestFactory
     public List<DynamicNode> test1() {
         return TestCase.flow(
-                TestCase.test("test", () -> System.out.println("testing")));
+                TestCase.test("testa", () -> System.out.println("Testing1")),
+                TestCase.test("testb", () -> System.out.println("Testing2")),
+                TestCase.test("testbc", () -> System.out.println("Testing3")));
     }
 
+    @TestFactory
+    public List<DynamicNode> test2() {
+        return TestCase.flow(
+                TestCase.test("test", () -> System.out.println("testing2")),
+                TestCase.test("test", () -> System.out.println("testing2")),
+                TestCase.test("test", () -> System.out.println("testing3")));
+    }
 
 }
