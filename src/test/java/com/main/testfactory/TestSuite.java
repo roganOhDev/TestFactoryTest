@@ -1,13 +1,11 @@
 package com.main.testfactory;
 
 
-import com.main.testfactory.domain.TestService;
-import org.assertj.core.api.Assertions;
+import com.main.testfactory.domain.TestTestService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ import java.util.List;
 public class TestSuite {
 
     @Autowired
-    private TestService service;
+    private TestTestService service;
 
     @BeforeEach
     public void beforeEach() {
@@ -33,7 +31,7 @@ public class TestSuite {
     public List<DynamicNode> test1() {
         return TestCase.flow(
                 TestCase.test("testa", () -> System.out.println("Testing1")),
-                TestCase.test("testb", service::test),
+                TestCase.test("testb", service::get),
                 TestCase.test("testbc", () -> System.out.println("Testing3")));
     }
 
